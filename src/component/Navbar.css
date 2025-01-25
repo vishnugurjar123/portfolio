@@ -33,7 +33,7 @@ nav ul li {
 nav ul li a {
     display: block;
     text-decoration: none;
-    color: white;
+    color: rgb(18, 13, 13);
     padding: 0.5rem;
     margin: 0 0.5rem;
     border-radius: 0.5rem;
