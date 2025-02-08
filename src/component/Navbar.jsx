@@ -8,12 +8,12 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg  bg-white shadow flex sticky z-30 top-0 max-h-fit max-w-full ">
       <div className="container-fluid">
-        <NavLink
+        <Link
           className="navbar-brand font-mono font-bold text-xl  text-cyan-950"
           to="/"
         >
           VISHNU GURJAR
-        </NavLink>
+        </Link>
         <button
           className=" menu navbar-toggler"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -30,24 +30,24 @@ const Navbar = () => {
         >
           <ul className={menuOpen ? "open" : ""}>
             <li className="nav-item">
-              <NavLink className="nav-NavLink " onClick={() => setMenuOpen(false)} aria-current="page" to="/">
+              <Link className="nav-NavLink " onClick={() => setMenuOpen(false)} aria-current="page" to="/">
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li className="nav-item  ">
-              <NavLink className="nav-NavLink" onClick={() => setMenuOpen(false)} to="/Project">
+              <Link className="nav-NavLink" onClick={() => setMenuOpen(false)} to="/Project">
                 Project
-              </NavLink>
+              </Link>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-NavLink" onClick={() => setMenuOpen(false)} to="/About">
+              <Link className="nav-NavLink" onClick={() => setMenuOpen(false)} to="/About">
                 About
-              </NavLink>
+              </Link>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-NavLink" onClick={() => setMenuOpen(false)} to="/Contact">
+              <Link className="nav-NavLink" onClick={() => setMenuOpen(false)} to="/Contact">
                 Contact
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>
@@ -70,14 +70,14 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100  text-sm rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <NavLink
+              <Link
                 to="http://localhost:5175/ "
                 className="justify-between text-sm"
                 target="_blank"
               >
                 WebSite
                 <span className="badge text-xs">Personal</span>
-              </NavLink>
+              </Link>
             </li>
             <NavLink to="#">Settings</NavLink>
             <NavLink to="#">Logout</NavLink>
