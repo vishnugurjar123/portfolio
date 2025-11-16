@@ -1,8 +1,11 @@
-import React from 'react'
+
 
 
 
 const Projectcard = ({obj}) => {
+  console.log(obj);
+ 
+  
 
   
   

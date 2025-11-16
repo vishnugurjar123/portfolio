@@ -1,32 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import video from './Vidoes/vidoes6.mp4';
 
-import pdf from '../resume.pdf';
-import './Home.css';
-
+import { Link } from "react-router-dom";
+import video from "./Vidoes/vidoes6.mp4";
+import "./Home.css";
 
 const Home = () => {
   return (
-    <div className="h-full w-full ">
-      <aside className="relative overflow-hidden text-black rounded-lg sm:py-10">
-        <div className="relative z-1 max-w-screen-x pb-3 pt-24  mx-20  ">
-          <div className="max-w-36 sm:mt-36 mt-80 space-y-11 text-right sm:text-right sm:ml-auto">
+    <div className="w-full min-h-screen bg-white text-black">
 
+      {/* --- HERO SECTION --- */}
+      <section className="relative flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-16 md:py-24">
 
+        {/* LEFT TEXT AREA */}
+        <div className="w-full md:w-1/2 text-center md:text-left mt-10 md:mt-0">
+          <p className="text-3xl font-semibold leading-snug">
+            Hello 👋 I'm <br />
+            <span className="text-4xl md:text-5xl font-bold">Vishnu Gurjar</span>
+          </p>
+
+          {/* Typing animation section */}
+          <section className="animation text-xl mt-4">
+            <div className="first">
+              <div>Full-Stack Developer</div>
+            </div>
+            <div className="second">
+              <div>Front-end Developer</div>
+            </div>
+            <div className="third">
+              <div>React-Js developer</div>
+            </div>
+          </section>
+
+          {/* Resume button */}
+          <div className="mt-6">
             <Link
-              className="inline-flex text-white items-center px-6 py-2 pr-7 font-extralight bg-orange-700 rounded-lg hover:opacity-75"
               to="https://flowcv.com/resume/q6qf6ucaqg"
-         
-              rel="noopener noreferrer"
+              target="_blank"
+              className="inline-flex items-center px-6 py-2 bg-orange-700 text-white rounded-lg hover:opacity-80"
             >
               <svg
                 fill="white"
                 width="24"
                 height="24"
                 xmlns="http://www.w3.org/2000/svg"
-                fillRule="evenodd"
-                clipRule="evenodd"
               >
                 <path d="M1.571 23.664l10.531-10.501 3.712 3.701-12.519 6.941c-.476.264-1.059.26-1.532-.011l-.192-.13zm9.469-11.56l-10.04 10.011v-20.022l10.04 10.011zm6.274-4.137l4.905 2.719c.482.268.781.77.781 1.314s-.299 1.046-.781 1.314l-5.039 2.793-4.015-4.003 4.149-4.137zm-15.854-7.534c.09-.087.191-.163.303-.227.473-.271 1.056-.275 1.532-.011l12.653 7.015-3.846 3.835-10.642-10.612z" />
               </svg>
@@ -35,51 +50,36 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="absolute inset-0 sm:my-10 w-full h-full flex flex-col sm:flex-row justify-center items-center">
-          <div className='w-full sm:w-1/2 h-full ml-32'>
-            <main className="text-left px-1 sm:px-0" style={{ height: '20%' }}>
-              <p className='text-3xl'>
-                Hello 👋 I'm 
-                <br />
-                Vishnu Gurjar
-              </p>
-              <section className="animation text-xl box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; rounded-full">
-                <div className="first ">
-                  <div>Youtuber</div>
-                </div>
-                <div className="second">
-                  <div>front-end developer</div>
-                </div>
-                <div className="third">
-                  <div>Mentor</div>
-                </div>
-              </section>
-            </main>
-          </div>
-          
+        {/* RIGHT - VIDEO */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+          <video
+            className="rounded-3xl w-full max-w-sm md:max-w-md lg:max-w-lg shadow-xl"
+            src={video}
+            autoPlay
+            loop
+            muted
+          />
         </div>
-      </aside>
+      </section>
 
-      <div className="relative w-full h-full flex flex-col sm:flex-row justify-start items-center px-4 ">
-        <div className="w-1/2 h-1/2">
-          <video className="rounded-3xl max-h-52 max-w-3xl box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;" src={video} autoPlay loop muted />
-        </div>
-        <div className="w-full sm:w-1/2 flex items-end justify-end mt-8 mr-32 ">
-          <div className="">
-            <h1 className="text-2xl font-bold  text-cyan-400">Computer technology</h1>
-            <p className=" text-sm font-thin py-4 ">
-              Computer technology is the driving force <br />
-              behind modern innovations, enabling <br />
-              advancements in various fields such as healthcare, <br />
-              education, and communication.
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* --- ABOUT SECTION --- */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-10">
+        <div className="w-full md:w-1/2">
+          <h1 className="text-2xl md:text-3xl font-bold text-cyan-500">
+            Computer Technology
+          </h1>
 
-      <h1 className="text-center text-xl py-10 font-medium">
-        "Welcome to my personal Portfolio!"
-      </h1>
+          <p className="text-sm md:text-base font-light py-4 text-gray-700 leading-relaxed">
+            Computer technology is the driving force behind modern innovations,
+            enabling advancements in various fields such as healthcare,
+            education, and communication.
+          </p>
+        </div>
+      </section>
+
+      {/* --- FOOTER LINE --- */}
+      <h1 className="text-center text-xl py-10 font-medium" >"Welcome to my Personal Portfolio!"</h1>
+      
     </div>
   );
 };

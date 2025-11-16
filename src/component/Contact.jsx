@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 
 const Contact = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -30,7 +30,7 @@ const Contact = () => {
               />
             </div>
             <div className='mb-4'>
-              <label className='block text-white text-sm font-semibold mb-2'> Email</label>
+              <label className='block text-white text-sm font-semibold mb-2 '> Email</label>
               <input
                 placeholder=' Email'
                 className='w-full px-3 py-2 border rounded-lg bg-gray-800 focus:border-blue-500 text-cyan-50'
