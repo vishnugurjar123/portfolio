@@ -66,13 +66,15 @@ const Home = () => {
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-10">
         <div className="w-full md:w-1/2">
           <h1 className="text-2xl md:text-3xl font-bold text-cyan-500">
-            Computer Technology
+            Full-Stack Developer
           </h1>
 
-          <p className="text-sm md:text-base font-light py-4 text-gray-700 leading-relaxed">
-            Computer technology is the driving force behind modern innovations,
-            enabling advancements in various fields such as healthcare,
-            education, and communication.
+          <p className="text-sm md:text-base font-light py-4 text-gray-900 leading-relaxed">
+            I’m a Java Full Stack Developer skilled in both front-end and back-end development. 
+            I work with Java, Spring Boot, Hibernate, JSP, JDBC, MySQL, and modern web technologies like React.js, HTML, CSS, and JavaScript.
+I enjoy creating responsive and efficient web applications that provide a great user experience.
+ I’m currently enhancing my skills through personal projects and always open to new learning opportunities 
+ in software development.
           </p>
         </div>
       </section>
