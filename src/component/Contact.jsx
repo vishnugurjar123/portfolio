@@ -1,76 +1,181 @@
-import  { useState } from 'react'
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { api } from "../axios/axios";
 
 const Contact = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  // const [status, setStatus] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    date: "",
+    message: "",
+  });
 
-  const handleSubmit = () => {
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Fake loader for toast.promise
+  const saveUserAsync = (user) => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve("saved"), 2000);
+    });
+  };
+
+  // ---------------------------------------------------
+  // 1️⃣  AXIOS POST SUBMIT (Your Backend)
+  // ---------------------------------------------------
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let payload = { ...formData };
+
+    try {
+      let res = await api.post("/user", payload);
+      console.log(res);
+
+      if (res.status === 201) {
+        await toast.promise(saveUserAsync(res), {
+          loading: "Sending...",
+          success: "Send successful! ✋",
+          error: "Something went wrong!",
+        });
+      }
+
+      // Reset form
+      setFormData({ name: "", email: "", date: "", message: "" });
+
+    } catch (err) {
+      toast.error("Registration Failed ❌");
+    }
+  };
+
+  // ---------------------------------------------------
+  // 2️⃣  FORMSPREE SUBMIT
+  // ---------------------------------------------------
+  const handleFormspree = async () => {
     
-    setFormSubmitted(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/myzolvwb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+       await toast.promise(
+      saveUserAsync(),
+      {
+        loading: "Message Sending...",
+        success: "Message successful!",
+        error: "Something went wrong!",
+      }
+    );
+        
+
+        // Reset form
+        setFormData({ name: "", email: "", date: "", message: "" });
+
+      } else {
+       
+        toast.error("Error sending via Formspree ❌");
+      }
+
+    } catch (err) {
+     console.log(err);
+     
+      toast.error("Forms Error ❌");
+    }
   };
 
   return (
-    <div className='flex justify-center items-center w-full h-full my-24'>
-      <div className='max-w-md w-full max-auto p-6 bg-gray-800 rounded-lg shadow-md'>
-        <h2 className='text-2xl text-center text-pink-600 font-mono mb-6'>Contact Us</h2>
+    <div className="w-full flex justify-center py-10 px-4">
+      <div className="w-full max-w-lg bg-white shadow-xl rounded-2xl p-8">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+          Contact Me
+        </h2>
 
-       
-        {formSubmitted ? (
-          <div className="text-center text-xl text-green-400">
-            Congratulations! Your message has been sent.
+        <form onSubmit={handleSubmit} className="space-y-4">
+
+          {/* Name */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your full name"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
-        ) : (
-          <form>
-            <div className='mb-4'>
-              <label className='block text-white text-sm font-semibold mb-2'>Your Name</label>
-              <input
-                placeholder=' Name'
-                className='w-full px-3 py-2 border rounded-lg bg-gray-800 focus:border-blue-500 text-cyan-50'
-                required
-                type="text"
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-white text-sm font-semibold mb-2 '> Email</label>
-              <input
-                placeholder=' Email'
-                className='w-full px-3 py-2 border rounded-lg bg-gray-800 focus:border-blue-500 text-cyan-50'
-                required
-                type="email"
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-white text-sm font-semibold mb-2'> Contact</label>
-              <input
-                placeholder='Contact'
-                className='w-full px-3 py-2 border rounded-lg bg-gray-800 focus:border-blue-500 text-cyan-50'
-                required
-                type="text"
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-white text-sm font-semibold mb-2'>Your Message</label>
-              <textarea
-                rows='4'
-                placeholder='Type your message here ...'
-                className='h-44 w-full px-3 py-2 border rounded-lg bg-gray-800 focus:border-blue-500 text-cyan-50'
-                required
-              />
-            </div>
-            <div className='flex justify-center'>
-              <button
-                type="button"
-                id='btn'
-                onClick={handleSubmit} 
-                className='bg-pink-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-pink-300 focus:outline-white focus:outline-dotted'
-              >
-                Send Message
-              </button>
-            </div>
-          </form>
-        )}
+
+          {/* Email */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Date */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Date</label>
+            <input
+              type="date"
+              name="date"
+              required
+              value={formData.date}
+              onChange={handleChange}
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Message */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Message</label>
+            <textarea
+              name="message"
+              required
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your message here..."
+              rows="4"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+
+          {/* Submit Buttons */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+          >
+            Send message
+          </button>
+
+          <button
+            type="button"
+            onClick={handleFormspree}
+            className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition"
+          >
+            Send  Gmail
+          </button>
+
+        </form>
+
+        
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Contact;

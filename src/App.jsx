@@ -9,12 +9,14 @@ import Project from './component/Project'
 
 
 import Footer from './component/Footer'
-
+import { Toaster } from 'react-hot-toast'
 
 
 const App = () => {
   return (
     <>
+  <Toaster   position="top-right" reverseOrder={false}
+/>
     <switch>
     <Navbar/>
 <Routes>
